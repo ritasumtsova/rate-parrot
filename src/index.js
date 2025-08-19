@@ -11,9 +11,10 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, {
   },
 });
 
-
-bot.setWebHook(`${process.env.WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`, {
-  secret_token: process.env.SECRET_TOKEN,
+bot.deleteWebHook().then(() => {
+  bot.setWebHook(`${process.env.WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`, {
+    secret_token: process.env.SECRET_TOKEN,
+  });
 });
 
 
