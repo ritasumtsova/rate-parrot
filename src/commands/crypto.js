@@ -22,7 +22,9 @@ export function cryptoCommands(bot) {
       const rate = await getCryptoRate(coin);
       bot.sendMessage(msg.chat.id, `🦜 ${coin.toUpperCase()} = ${rate} USD`);
     } catch (e) {
-      bot.sendMessage(msg.chat.id, `Не вдалося знайти крипту: ${coin}`);
+      bot.sendMessage(msg.chat.id, `Couldn't find the crypto: ${coin}`);
     }
   });
 }
+
+
