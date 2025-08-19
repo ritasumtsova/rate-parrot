@@ -6,15 +6,22 @@ import { cryptoCommands } from "./commands/crypto.js";
 dotenv.config();
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, {
+  polling: false,
   webHook: {
     port: process.env.PORT,
   },
 });
 
 bot.deleteWebHook().then(() => {
-  bot.setWebHook(`${process.env.WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`, {
-    secret_token: process.env.SECRET_TOKEN,
+  console.log("Old webhook deleted");
+
+  return bot.setWebHook(`${URL}/bot${TOKEN}`, {
+    secret_token: SECRET,
   });
+}).then(() => {
+  console.log(`Webhook set to ${URL}/bot${TOKEN}`);
+}).catch(err => {
+  console.error("Webhook setup error:", err);
 });
 
 
